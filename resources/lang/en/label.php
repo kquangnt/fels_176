@@ -36,6 +36,7 @@
          'stt' => 'No',
          'create' => 'Create',
          'create_user' => 'Create User',
+         'avatar_default' => 'default.jpg',
          'edit_user' => 'Edit User',
          'description' => 'Description',
          'image' => 'Image',

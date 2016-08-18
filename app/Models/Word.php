@@ -7,9 +7,19 @@ class Word extends Model
 {
     protected $fillable = ['content', 'category_id'];
 
-     public function category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function results()
+    {
+        return $this->hasMany(Result::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use Request;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -32,6 +33,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+    public function getAvatarPath()
+    {
+        return config('settings.avatar_path') . $this->avatar ;
+    }
 
 	public function activities()
     {

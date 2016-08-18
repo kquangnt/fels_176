@@ -15,6 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function()
+{
+    Route::resource('user', 'User\UserController', [
+         'only' => ['edit', 'update']
+     ]);
+
+    Route::resource('category', 'User\CategoryController', [
+         'only' => ['index']
+     ]);
+
+    Route::resource('word_list', 'User\WordController', [
+         'only' => ['index']
+     ]);
+});
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

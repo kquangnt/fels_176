@@ -5,4 +5,5 @@ return [
     'not_correct' => '0',
     'avatar_path' => '/uploads/images/',
     'avatar_default' => 'default.jpg',
+    'is_admin' => '1',
 ];

@@ -11,5 +11,4 @@ return [
     'email' => 'Email',
     'cancel' => 'Cancel',
     'update_profile' => 'Update Profile',
-    'avatar_path' => '/public/uploads/images/',
 ];

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
-use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\User\UserRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -39,7 +39,7 @@ class AuthController extends Controller
 
     protected $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepository $userRepository)
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
         $this->userRepository = $userRepository;

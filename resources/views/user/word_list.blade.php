@@ -5,29 +5,41 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ trans('label.word_list') }}</div>
-
+                <div class="panel-heading">{{ trans('word.word_list') }}</div>
                 <div class="panel-body">
-
                      <center>
-                        <form role="form">
+                        {{ Form::open(array('role' => 'form')) }}
                         <div class="form-group">
-                          <label for="sel1">{{ trans('label.category') }}</label>
-                          <select id="sel1">
-                                <!-- Load categories and display in option -->
-                                <option> {{ trans('label.select') }} </option>
-                          </select>
-                          <br>
-                          <input type="radio" name="learned" value="learned"> {{ trans('label.learned') }}
-                          <input type="radio" name="learned" value="not learn"> {{ trans('label.not_learned') }}
-                          <input type="radio" name="learned" checked value="all"> {{ trans('label.all') }}
-                          <br>
-                          <button type="button" class="btn btn-info">{{ trans('label.filter') }}</button>
-                          <button type="button" class="btn btn-info">{{ trans('label.pdf') }}</button>
+
+                            {{ Form::label(trans('word.category')) }}
+                            {{ Form::select('optCategory', $categories) }}
+                            <br>
+
+                            {{ Form::radio('rdLearned', trans('word.learned')) }} {{ trans('word.learned') }}
+
+                            {{ Form::radio('rdLearned', trans('word.not_learned')) }} {{ trans('word.not_learned') }}
+
+                            {{ Form::radio('rdLearned', trans('word.all'), true) }} {{ trans('word.all') }}
+
+                            <br>
+                            {{ Form::submit(trans('word.filter'), array('class' => 'btn btn-info')) }}
+                            {{ Form::submit(trans('word.pdf'), array('class' => 'btn btn-info')) }}
                         </div>
                       </form>
-                    </center>
 
+                      <div class="panel-body">
+                          @foreach ($words as $word)
+                          <br>
+                               {{ $word->content }}
+                                @foreach ($word->answers as $answer)
+                                    @if ($answer->is_correct)
+                                        {{ $answer->content }}
+                                    @endif
+                                @endforeach
+                          @endforeach
+                      </div>
+                      {{ Form::close() }}
+                    </center>
                 </div>
             </div>
         </div>

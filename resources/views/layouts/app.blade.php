@@ -39,7 +39,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ URL::action('HomeController@index') }}">
                     <strong> {{ trans('label.appname') }} </strong>
                 </a>
             </div>
@@ -47,8 +47,8 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="#">{{ trans('label.word_list') }}</a></li>
-                    <li><a href="#">{{ trans('label.category') }}</a></li>
+                    <li><a href="{{ url('user/word_list') }}">{{ trans('label.word_list') }}</a></li>
+                    <li><a href="{{ url('user/category') }}">{{ trans('label.category') }}</a></li>
                     <li><a href="#">{{ trans('label.result') }}</a></li>
                     <li><a href="#">{{ trans('label.user_show') }}</a></li>
                 </ul>
@@ -66,6 +66,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ URL::action('User\UserController@edit', Auth::user()->id) }}">{{ trans('label.profile') }}</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('label.logout') }}</a></li>
                             </ul>
                         </li>
@@ -74,6 +75,8 @@
             </div>
         </div>
     </nav>
+
+    @yield('profile')
 
     @yield('content')
 

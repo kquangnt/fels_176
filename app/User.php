@@ -2,6 +2,7 @@
 namespace App;
 
 use Request;
+use Auth;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -36,12 +37,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function getAvatarPath()
     {
-        return config('settings.avatar_path') . $this->avatar ;
+        return asset(config('settings.avatar_path') . $this->avatar);
     }
 
     public function isAdmin()
     {
         return $this->role == config('settings.is_admin');
+    }
+
+    public function isCurrent()
+    {
+        return $this->id === Auth::user()->id;
     }
 
 	public function activities()

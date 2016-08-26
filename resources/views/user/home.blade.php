@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('profile')
-    <div style="position:fixed;margin-left:35px;">
-         <img class="image-profile" src="{{ Request::root() }}/uploads/images/{{ Auth::user()->avatar }}" class="user-image" alt="User Image" style="width:100px;height:100px;">
+    <div>
+         <img class="image-profile" src="{{ Auth::user()->getAvatarPath() }}" class="user-image" alt="User Image">
          <p><strong> {{ Auth::user()->name }} </strong></p>
          <p> {{ trans('label.learned') }} {{ $sumLearnedWords }} {{ trans('label.words') }} </p>
          <p> {{ trans('label.followed') }} {{ count(Auth::user()->followers) }} </p>
@@ -23,9 +23,27 @@
                             <a type="button" class="btn btn-success">{{ trans('label.lesson') }}</a>
                         </center>
                     </div>
-                    <div class="activity">
-                        <strong> {{ trans('label.activities') }} </strong>
+                        <div class="activity">
+                            <strong> {{ trans('label.activities') }} </strong>
+                            <br>
+                            @foreach ($lessons as $lesson)
+                                <img class="image-profile" src="{{ $lesson->user->getAvatarPath() }}" class="user-image" alt="User Image">
+                                <strong> {{ $lesson->user->name }} </strong>
+                                {{ trans('label.learned') }}
+                                {{ count($lesson->category->words->intersect($listLearnedWord)) }} {{ trans('label.word_in_lesson') }} "{{ $lesson->category->name }}"
+                                - ({{ $lesson->created_at }})
+
+                                @if (!$lesson->user->isCurrent())
+                                    {!! Form::open(['route' => ['user.relationship.destroy', Auth::user()->id, 'follower_id' => $lesson->user->id], 'method' => 'DELETE']) !!}
+
+                                    {!! Form::submit(trans('label.unfollow'), ['class' => 'btn btn-info', 'onclick' => "return confirm(trans('label.confirm_delete'))"]) !!}
+
+                                    {!! Form::close() !!}
+                                @endif
+                            <br> <br>
+                            @endforeach
                     </div>
+                    {!! $lessons->render() !!}
                 </div>
             </div>
         </div>

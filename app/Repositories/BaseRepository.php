@@ -5,11 +5,17 @@
 namespace App\Repositories;
 use Exception;
 use DB;
+use Auth;
 use Carbon\Carbon;
 
 abstract class BaseRepository
 {
     protected $model;
+
+    public function getCurrentUser()
+    {
+        return Auth::user();
+    }
 
     public function count()
     {

@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function()
 {
-    Route::resource('user', 'User\UserController', [
-         'only' => ['edit', 'update']
+    Route::resource('user', 'User\UsersController', [
+         'only' => ['index', 'edit', 'update']
      ]);
 
     Route::resource('category', 'User\CategoryController', [
@@ -27,6 +27,10 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function()
 
     Route::resource('word_list', 'User\WordController', [
          'only' => ['index']
+     ]);
+
+    Route::resource('relationship', 'User\RelationshipsController', [
+         'only' => ['create', 'destroy']
      ]);
 });
 

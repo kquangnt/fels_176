@@ -40,4 +40,5 @@
          'vietnamese' => 'Vietnamese',
          'language' => 'Language',
          'delete_all' => 'Delete all',
+         'confirm_delete' => 'Are you sure?',
 ];

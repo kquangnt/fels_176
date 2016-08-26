@@ -21,4 +21,11 @@ return [
     'back' => 'Back',
     'save' => 'Save',
     'cancel' => 'Cancel',
+    'create_word_successfully' => 'Word saved successfully',
+    'word_not_found' => 'Word not found',
+    'update_word_successfully' => 'Word updated successfully',
+    'delete_word_successfully' => 'Word deleted successfully',
+    'create_word_fail' => 'Word create fail',
+    'update_word_fail' => 'Word update fail',
+    'delete_word_fail' => 'Word delete fail',
 ];

@@ -39,6 +39,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return config('settings.avatar_path') . $this->avatar ;
     }
 
+    public function isAdmin()
+    {
+        return $this->role == config('settings.is_admin');
+    }
+
 	public function activities()
     {
         return $this->hasMany(Activity::class);

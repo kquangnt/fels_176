@@ -16,4 +16,11 @@ return [
     'save' => 'Save',
     'cancel' => 'Cancel',
     'start' => 'Start',
+    'create_category_successfully' => 'Category saved successfully',
+    'category_not_found' => 'Category not found',
+    'update_category_successfully' => 'Category updated successfully',
+    'delete_category_successfully' => 'Category deleted successfully',
+    'create_category_fail' => 'Category create fail',
+    'update_category_fail' => 'Category update fail',
+    'delete_category_fail' => 'Category delete fail',
 ];

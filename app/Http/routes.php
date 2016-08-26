@@ -30,6 +30,12 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function()
      ]);
 });
 
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function()
+{
+    Route::resource('category', 'Admin\CategoryController');
+    Route::resource('word', 'Admin\WordController');
+});
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

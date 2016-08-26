@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Word;
 use Illuminate\Http\Request;
 use App\Repositories\Word\WordRepository;
+use App\Repositories\Category\CategoryRepository;
 
 class WordController extends Controller {
 
@@ -15,15 +16,17 @@ class WordController extends Controller {
      */
 
     protected $wordRepository;
+    protected $categoryRepository;
 
-    public function __construct(WordRepository $wordRepository)
+    public function __construct(WordRepository $wordRepository, CategoryRepository $categoryRepository)
     {
         $this->wordRepository = $wordRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function index()
     {
-        $categories = $this->wordRepository->getListCategory();
+        $categories = $this->categoryRepository->getListCategory();
         $words = $this->wordRepository->all();
 
         return view('user.word_list', compact('categories', 'words'));

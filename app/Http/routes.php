@@ -40,6 +40,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::resource('word', 'Admin\WordController');
 });
 
+Route::get('/redirect/{provider}', 'SocialAuthController@redirectToProvider');
+Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

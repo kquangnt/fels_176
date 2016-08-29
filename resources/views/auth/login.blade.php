@@ -18,41 +18,54 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                           </div>
-                         </div>
+                            </div>
+                        </div>
 
-                         <div class="form-group">
-                             {{ Form::label('password', trans('label.password'), ['class' => 'col-md-4 control-label']) }}
-                             <div class="col-md-6">
-                                 {{ Form::password('password', ['class' => 'form-control', 'name'=>'password']) }}
+                        <div class="form-group">
+                            {{ Form::label('password', trans('label.password'), ['class' => 'col-md-4 control-label']) }}
+                            <div class="col-md-6">
+                                {{ Form::password('password', ['class' => 'form-control', 'name' => 'password']) }}
 
-                                  @if ($errors->has('password'))
+                                @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                  @endif
-                             </div>
-                         </div>
+                                @endif
+                            </div>
+                        </div>
 
-                         <div class="form-group">
-                             <div class="col-md-6 col-md-offset-4">
-                                 <div class="checkbox">
-                                 {{ Form::checkbox('remember', '') }}
-                                 {{ Form::label('password', trans('label.remember') ) }}
-                                 </div>
-                             </div>
-                         </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                {{ Form::checkbox('remember', '') }}
+                                {{ Form::label('password', trans('label.remember') ) }}
+                                </div>
+                            </div>
+                        </div>
 
-                         <div class="form-group">
-                             <div class="col-md-6 col-md-offset-4">
-                                 <button type="submit" class="btn btn-primary">
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
                                      <i class="fa fa-btn fa-sign-in"></i> {{ trans('label.login') }}
-                                 </button>
-                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">{{ trans('passwords.forgot_password') }}
-                                 </a>
-                             </div>
-                         </div>
-                     {{ Form::close() }}
+                                </button>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">{{ trans('passwords.forgot_password') }}
+                                </a>
+                                <p>
+                                    <a class="btn btn-link" href="{{ url('redirect/facebook') }}">
+                                        <span class="fa fa-facebook"></span> {{ trans('auth.facebook_login') }}
+                                    </a>
+
+                                    <a class="btn btn-link" href="{{ url('redirect/twitter') }}">
+                                        <span class="fa fa-twitter"></span> {{ trans('auth.twitter_login') }}
+                                    </a>
+
+                                    <a class="btn btn-link" href="{{ url('redirect/google') }}">
+                                        <span class="fa fa-google"></span> {{ trans('auth.google_login') }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>

@@ -47,10 +47,10 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('user/word_list') }}">{{ trans('label.word_list') }}</a></li>
-                    <li><a href="{{ url('user/category') }}">{{ trans('label.category') }}</a></li>
+                    <li><a href="{{ URL::action('User\WordController@index') }}">{{ trans('label.word_list') }}</a></li>
+                    <li><a href="{{ URL::action('User\CategoryController@index') }}">{{ trans('label.category') }}</a></li>
                     <li><a href="#">{{ trans('label.result') }}</a></li>
-                    <li><a href="#">{{ trans('label.user_show') }}</a></li>
+                    <li><a href="{{ URL::action('User\UsersController@index') }}">{{ trans('label.user_show') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -66,7 +66,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ URL::action('User\UserController@edit', Auth::user()->id) }}">{{ trans('label.profile') }}</a></li>
+                                <li><a href="{{ URL::action('User\UsersController@edit', Auth::user()->id) }}">{{ trans('label.profile') }}</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('label.logout') }}</a></li>
                             </ul>
                         </li>

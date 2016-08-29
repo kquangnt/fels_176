@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('profile')
+    <div>
+         <img class="image-profile" src="{{ Auth::user()->getAvatarPath() }}" class="user-image" alt="User Image">
+         <p><strong> {{ Auth::user()->name }} </strong></p>
+         <p> {{ trans('label.learned') }} {{ $sumLearnedWords }} {{ trans('label.words') }} </p>
+         <p> {{ trans('label.followed') }} {{ count(Auth::user()->followers) }} </p>
+    </div>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -7,8 +16,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ trans('label.user_show') }}</div>
                 <div class="panel-body">
-                    This is user show
+                    <br>
+                    @foreach ($users as $user)
+                        <img class="image-profile" src="{{ $user->getAvatarPath() }}" class="user-image" alt="User Image">
+                        {{ $user->name }} - {{ trans('label.followed') }} {{ count($user->followers) }}
+                        <a type="button" class="btn btn-info" href="{{ URL::action('User\RelationshipsController@create', ['follower_id' => $user->id]) }}">{{ trans('label.follow') }}</a>
+                        <br> <br>
+                    @endforeach
                 </div>
+                {!! $users->render() !!}
             </div>
         </div>
     </div>

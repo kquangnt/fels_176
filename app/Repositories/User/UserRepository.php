@@ -24,6 +24,18 @@ class UserRepository extends BaseRepository
         $this->model = $user;
     }
 
+    public function createUserSocial($datas)
+    {
+        return $this->model->create($data);
+    }
+
+    public function getUserWithEmail($providerUser)
+    {
+        $user = $this->model->whereEmail($providerUser->getEmail())->first();
+
+        return $user;
+    }
+
     public function create($request)
     {
         if (isset($request['avatar'])) {

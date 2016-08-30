@@ -3,7 +3,6 @@ namespace App\Repositories\Answer;
 
 use Auth;
 use App\Models\Answer;
-use App\Models\Word;
 use App\Repositories\BaseRepository;
 use App\Repositories\Result\ResultRepository;
 use App\Repositories\Lesson\LessonRepository;
@@ -27,5 +26,13 @@ class AnswerRepository extends BaseRepository
         $listAnswerId = $this->model->where('is_correct', config('settings.is_correct'))->pluck('id');
 
         return $listAnswerId;
+    }
+
+    public function getWordIdByAnswerId($answerId)
+    {
+        $answer = $this->model->find($answerId);
+        $wordId = $answer->word->id;
+
+        return $wordId;
     }
 }

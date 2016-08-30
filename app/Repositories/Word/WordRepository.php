@@ -3,12 +3,10 @@ namespace App\Repositories\Word;
 
 use Auth;
 use App\Models\Word;
-use App\Models\Category;
 use App\Repositories\BaseRepository;
 use App\Repositories\Lesson\LessonRepository;
 use App\Repositories\Answer\AnswerRepository;
 use App\Repositories\Result\ResultRepository;
-use App\Repositories\Category\CategoryRepository;
 
 class WordRepository extends BaseRepository
 {
@@ -22,5 +20,19 @@ class WordRepository extends BaseRepository
         $listLearnedWord = $this->model->whereIn('id' , $answerRepository->getListLearnedWordId($resultRepository, $lessonRepository))->get();
 
         return $listLearnedWord;
+    }
+
+    public function getWordsWithAnswer($results)
+    {
+        $words = $this->model->whereIn('id', array_keys($results))->get();
+
+        return $words;
+    }
+
+    public function getListWordsForLesson($categoryId)
+    {
+        $words = $this->model->where('category_id', $categoryId)->orderByRaw('RAND()')->take(config('settings.count_question'))->get();
+
+        return $words;
     }
 }

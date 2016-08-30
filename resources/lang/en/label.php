@@ -44,4 +44,9 @@
          'language' => 'Language',
          'delete_all' => 'Delete all',
          'confirm_delete' => 'Are you sure?',
+         'you_choosed' => 'You choosed',
+         'back' => 'Back',
+         'correct' => 'Correct',
+         'speak' => 'Speak',
+         'finish' => 'Finish',
 ];

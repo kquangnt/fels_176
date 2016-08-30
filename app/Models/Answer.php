@@ -11,5 +11,4 @@ class Answer extends Model
     {
         return $this->belongsTo(Word::class);
     }
-
 }

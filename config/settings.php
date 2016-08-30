@@ -6,4 +6,5 @@ return [
     'avatar_path' => '/uploads/images/',
     'avatar_default' => 'default.jpg',
     'is_admin' => '1',
+    'count_question' => '5',
 ];

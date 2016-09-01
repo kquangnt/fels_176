@@ -35,4 +35,14 @@ class AnswerRepository extends BaseRepository
 
         return $wordId;
     }
+
+    public function getListWordId(LessonRepository $lessonRepository, ResultRepository $resultRepository)
+    {
+        $listWordId = $this->model
+            ->whereIn('id', $resultRepository->getListAnswerId($lessonRepository))
+            ->where('is_correct', config('settings.is_correct'))
+            ->pluck('word_id');
+
+        return $listWordId;
+    }
 }

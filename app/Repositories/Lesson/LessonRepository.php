@@ -35,4 +35,12 @@ class LessonRepository extends BaseRepository
 
         return $lessons;
     }
+
+    public function getListLessonId()
+    {
+        $currentUserId = $this->getCurrentUser()->id;
+        $lessonId = $this->model->where('user_id', $currentUserId)->pluck('id');
+
+        return $lessonId;
+    }
 }

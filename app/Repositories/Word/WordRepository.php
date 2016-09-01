@@ -35,4 +35,38 @@ class WordRepository extends BaseRepository
 
         return $words;
     }
+
+    public function getWordsWithCategoryId($categoryId)
+    {
+        $words = $this->model->where(function($query) use ($categoryId) {
+            if (!empty($categoryId)) {
+                $query->where('category_id', $categoryId);
+            }
+        })
+        ->orderBy('content')
+        ->get();
+
+        return $words;
+    }
+
+    public function getListLearnedWords($words, LessonRepository $lessonRepository, ResultRepository $resultRepository, AnswerRepository $answerRepository)
+    {
+        $learnedWords = $this->model->whereIn('id', $words->pluck('id'))->whereIn('id', $answerRepository->getListWordId($lessonRepository, $resultRepository))->orderBy('content')->get();
+
+        return $learnedWords;
+    }
+
+    public function getNotLearnedWord($learnedIdWords)
+    {
+        $notLearnedWords = $this->model->whereNotIn('id', $learnedIdWords)->orderBy('content')->get();
+
+        return $notLearnedWords;
+    }
+
+    public function getNotLearnedWordWithCategory($categoryId, $learnedIdWords)
+    {
+        $notLearnedWords = $this->model->where('category_id', $categoryId)->whereNotIn('id', $learnedIdWords)->orderBy('content')->get();
+
+        return $notLearnedWords;
+    }
 }

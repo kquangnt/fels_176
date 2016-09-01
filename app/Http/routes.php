@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function()
 {
     Route::resource('user', 'User\UsersController', [
-         'only' => ['index', 'edit', 'update']
+         'only' => ['index', 'show', 'edit', 'update']
      ]);
 
     Route::resource('category', 'User\CategoryController', [
@@ -50,6 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
 Route::get('/redirect/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback');
+
+Route::post('/filter-word', 'User\FilterController@filterWord');
 
 Route::auth();
 

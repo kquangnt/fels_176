@@ -60,7 +60,7 @@ class UserRepository extends BaseRepository
         return $createUser;
     }
 
-     public function update($inputs, $id)
+    public function update($inputs, $id)
     {
         try {
             $currentUser = Auth::user();

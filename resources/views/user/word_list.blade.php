@@ -7,38 +7,48 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ trans('word.word_list') }}</div>
                 <div class="panel-body">
-                     <center>
-                        {{ Form::open(array('role' => 'form')) }}
-                        <div class="form-group">
+                    <center>
+                        {!! Form::open(['action' => 'User\FilterController@filterWord', 'role' => 'form']) !!}
+                            <div class="form-group">
+                                {!! Form::label(trans('label.category')) !!}
+                                @if (isset($selectedCategory) && !empty($selectedCategory))
+                                    {!! Form::select('optCategory', $categories->toArray(), $selectedCategory->id) !!}
+                                @else
+                                    {!! Form::select('optCategory',  ['' => trans('label.select')] + $categories->toArray(), null) !!}
+                                @endif
+                                {!! Form::radio('rdLearned', trans('label.learned'), isset($rdChoose) && $rdChoose === config('settings.learned') ? true : null) !!}
+                                {{ trans('label.learned') }}
 
-                            {{ Form::label(trans('word.category')) }}
-                            {{ Form::select('optCategory', $categories) }}
-                            <br>
+                                {!! Form::radio('rdLearned', trans('label.not_learned'), isset($rdChoose) && $rdChoose === config('settings.not_learned') ? true: null) !!}
+                                {{ trans('label.not_learned') }}
 
-                            {{ Form::radio('rdLearned', trans('word.learned')) }} {{ trans('word.learned') }}
+                                {!! Form::radio('rdLearned', trans('label.all'), isset($rdChoose) && $rdChoose === config('settings.all') ? true : null) !!}
+                                {{ trans('label.all') }}
 
-                            {{ Form::radio('rdLearned', trans('word.not_learned')) }} {{ trans('word.not_learned') }}
+                                <br>
+                                {!! Form::submit(trans('label.filter'), ['class' => 'btn btn-info']) !!}
+                                {!! Form::submit(trans('label.pdf'), ['class' => 'btn btn-info']) !!}
+                            </div>
 
-                            {{ Form::radio('rdLearned', trans('word.all'), true) }} {{ trans('word.all') }}
-
-                            <br>
-                            {{ Form::submit(trans('word.filter'), array('class' => 'btn btn-info')) }}
-                            {{ Form::submit(trans('word.pdf'), array('class' => 'btn btn-info')) }}
-                        </div>
-                      </form>
-
-                      <div class="panel-body">
-                          @foreach ($words as $word)
-                          <br>
-                               {{ $word->content }}
-                                @foreach ($word->answers as $answer)
-                                    @if ($answer->is_correct)
-                                        {{ $answer->content }}
-                                    @endif
+                        <div class="panel-body">
+                            <table>
+                                @foreach ($words as $word)
+                                    <tr>
+                                        <td>
+                                            {{ $word->content }}
+                                        </td>
+                                        @foreach ($word->answers as $answer)
+                                            @if ($answer->is_correct)
+                                                <td>
+                                                    {{ $answer->content }}
+                                                </td>
+                                            @endif
+                                        @endforeach
+                                    </tr>
                                 @endforeach
-                          @endforeach
-                      </div>
-                      {{ Form::close() }}
+                            </table>
+                        </div>
+                        {!! Form::close() !!}
                     </center>
                 </div>
             </div>

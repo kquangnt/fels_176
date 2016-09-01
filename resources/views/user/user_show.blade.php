@@ -19,7 +19,8 @@
                     <br>
                     @foreach ($users as $user)
                         <img class="image-profile" src="{{ $user->getAvatarPath() }}" class="user-image" alt="User Image">
-                        {{ $user->name }} - {{ trans('label.followed') }} {{ count($user->followers) }}
+                        [<a href="{{ URL::action('User\UsersController@show', $user->id) }}"> {{ $user->name }} </a>]
+                         - {{ trans('label.followed') }} {{ count($user->followers) }}
                         <a type="button" class="btn btn-info" href="{{ URL::action('User\RelationshipsController@create', ['follower_id' => $user->id]) }}">{{ trans('label.follow') }}</a>
                         <br> <br>
                     @endforeach

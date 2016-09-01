@@ -57,6 +57,19 @@ class UsersController extends Controller {
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $userDetail = $this->userShowRepository->find($id);
+
+        return view('user.user_detail', compact('userDetail'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

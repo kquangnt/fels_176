@@ -28,7 +28,7 @@
                             <br>
                             @foreach ($lessons as $lesson)
                                 <img class="image-profile" src="{{ $lesson->user->getAvatarPath() }}" class="user-image" alt="User Image">
-                                <strong> {{ $lesson->user->name }} </strong>
+                                [<a href="{{ URL::action('User\UsersController@show', $lesson->user->id) }}"> {{ $lesson->user->name }} </a>]
                                 {{ trans('label.learned') }}
                                 {{ count($lesson->category->words->intersect($listLearnedWord)) }} {{ trans('label.word_in_lesson') }} "{{ $lesson->category->name }}"
                                 - ({{ $lesson->created_at }})

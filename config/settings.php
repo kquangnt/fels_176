@@ -7,4 +7,7 @@ return [
     'avatar_default' => 'default.jpg',
     'is_admin' => '1',
     'count_question' => '5',
+    'all' => 'all',
+    'learned' => 'learned',
+    'not_learned' => 'not learned',
 ];

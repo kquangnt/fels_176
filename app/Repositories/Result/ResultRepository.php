@@ -64,4 +64,11 @@ class ResultRepository extends BaseRepository
 
         return $results;
     }
+
+    public function getListAnswerId(LessonRepository $lessonRepository)
+    {
+        $listAnswerId = $this->model->whereIn('lesson_id', $lessonRepository->getListLessonId())->pluck('answer_id');
+
+        return  $listAnswerId;
+    }
 }

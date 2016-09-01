@@ -17,11 +17,4 @@ class CategoryRepository extends BaseRepository
 
         return $listCategory;
     }
-
-    public function getListCategoryId()
-    {
-        $listCategory = $this->model->lists('name', 'id');
-
-        return $listCategory;
-    }
 }

@@ -13,9 +13,17 @@ class LessonRepository extends BaseRepository
         $this->model = $lesson;
     }
 
+    public function insertLesson($categoryId)
+    {
+        $inputs['user_id'] = $this->getCurrentUser()->id;
+        $inputs['category_id'] = $categoryId;
+
+        return $this->model->create($inputs);
+    }
+
     public function getLessonId()
     {
-        $currentUserId = Auth::user()->id;
+        $currentUserId = $this->getCurrentUser()->id;
         $listLessonId = $this->model->where('user_id', $currentUserId)->pluck('id');
 
         return $listLessonId;

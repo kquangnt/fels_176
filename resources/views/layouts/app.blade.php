@@ -49,7 +49,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ URL::action('User\WordController@index') }}">{{ trans('label.word_list') }}</a></li>
                     <li><a href="{{ URL::action('User\CategoryController@index') }}">{{ trans('label.category') }}</a></li>
-                    <li><a href="#">{{ trans('label.result') }}</a></li>
                     <li><a href="{{ URL::action('User\UsersController@index') }}">{{ trans('label.user_show') }}</a></li>
                 </ul>
 

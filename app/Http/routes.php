@@ -32,6 +32,14 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function()
     Route::resource('relationship', 'User\RelationshipsController', [
          'only' => ['create', 'destroy']
      ]);
+
+    Route::resource('lesson', 'User\LessonController', [
+         'only' => ['index']
+     ]);
+
+    Route::resource('result', 'User\ResultController', [
+         'only' => ['store']
+     ]);
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function()

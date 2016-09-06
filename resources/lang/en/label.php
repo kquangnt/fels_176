@@ -57,4 +57,5 @@
          'not_learned' => 'not learned',
          'filter' => 'Filter',
          'pdf' => 'PDF',
+         'save' => 'Save',
 ];

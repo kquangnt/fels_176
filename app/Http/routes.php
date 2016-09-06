@@ -46,6 +46,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 {
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('word', 'Admin\WordController');
+    Route::resource('user', 'Admin\UserController');
+    Route::resource('answer', 'Admin\AnswerController');
 });
 
 Route::get('/redirect/{provider}', 'SocialAuthController@redirectToProvider');

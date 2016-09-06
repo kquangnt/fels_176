@@ -69,4 +69,11 @@ class WordRepository extends BaseRepository
 
         return $notLearnedWords;
     }
+
+    public function getListWord()
+    {
+        $listWord = $this->model->lists('content', 'id');
+
+        return $listWord;
+    }
 }

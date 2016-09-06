@@ -35,7 +35,7 @@ class WordController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->getListCategoryId();
+        $categories = $this->categoryRepository->getListCategory();
 
         return view('admin.word.create', compact('categories'));
     }

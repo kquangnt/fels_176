@@ -28,8 +28,9 @@ class WordController extends Controller {
     {
         $categories = $this->categoryRepository->getListCategory();
         $words = $this->wordRepository->all();
+        $rdChoose = config('settings.all');
 
-        return view('user.word_list', compact('categories', 'words'));
+        return view('user.word_list', compact('categories', 'words', 'rdChoose'));
     }
 
     /**

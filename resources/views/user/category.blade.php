@@ -15,7 +15,7 @@
                             <i> ( {{ $category->description }} ) </i>
                             <br><br>
                             @foreach ($category->words as $word)
-                                {{ $word->content }}
+                                <label class="display-content"> {{ $word->content }} </label>
                             @endforeach
                         <br><br>
                         <a type="button" class="btn btn-success" href="{{ URL::action('User\LessonController@index', array('category_id' => $category->id, 'category_name' => $category->name)) }}" class="btn btn-success">{{ trans('category.start') }}</a>

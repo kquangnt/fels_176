@@ -16,7 +16,7 @@
                             </td>
 
                             <td>
-                                {{ $userDetail->name }}
+                                <label class="user-detail"> {{ $userDetail->name }} </label>
                             </td>
                         </tr>
 
@@ -26,7 +26,7 @@
                             </td>
 
                             <td>
-                                {{ $userDetail->created_at->diffForHumans() }}
+                                <label class="user-detail"> {{ $userDetail->created_at->diffForHumans() }} </label>
                             </td>
                         </tr>
 
@@ -36,7 +36,7 @@
                             </td>
 
                             <td>
-                                {{ $userDetail->email }}
+                                <label class="user-detail"> {{ $userDetail->email }} </label>
                             </td>
                         </tr>
 
@@ -46,7 +46,7 @@
                             </td>
 
                             <td>
-                                {{ count($userDetail->followers) }}
+                                <label class="user-detail"> {{ count($userDetail->followers) }} </label>
                             </td>
                         </tr>
                     </table>

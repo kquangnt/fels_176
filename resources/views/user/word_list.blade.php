@@ -35,12 +35,12 @@
                                 @foreach ($words as $word)
                                     <tr>
                                         <td>
-                                            {{ $word->content }}
+                                            <label class="display-content"> {{ $word->content }} </label>
                                         </td>
                                         @foreach ($word->answers as $answer)
                                             @if ($answer->is_correct)
                                                 <td>
-                                                    {{ $answer->content }}
+                                                    <label class="display-content"> {{ $answer->content }} </label>
                                                 </td>
                                             @endif
                                         @endforeach

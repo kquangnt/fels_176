@@ -44,27 +44,42 @@ class FilterController extends Controller
         $allInput = $request->only(['optCategory', 'rdLearned']);
         $categories = $this->categoryRepository->lists('name', 'id');
         $rdChoose = $allInput['rdLearned'];
+        $selectedCategory = '';
 
-        switch ($rdChoose) {
-            case config('settings.all'):
-                $listWords = $this->wordRepository->getWordsWithCategoryId($allInput['optCategory']);
-                break;
-            case config('settings.learned'):
-                $listWordWithCategory = $this->wordRepository->getWordsWithCategoryId($allInput['optCategory']);
-                $listWords = $this->wordRepository->getListLearnedWords($listWordWithCategory, $this->lessonRepository, $this->resultRepository, $this->answerRepository);
-                break;
-            case config('settings.not_learned'):
-                $listWordWithCategory = $this->wordRepository->getWordsWithCategoryId($allInput['optCategory']);
-                $learnedWords = $this->wordRepository->getListLearnedWords($listWordWithCategory, $this->lessonRepository, $this->resultRepository, $this->answerRepository);
+        try {
+            switch ($rdChoose) {
+                case config('settings.all'):
+                    $listWords = $this->wordRepository->getWordsWithCategoryId($allInput['optCategory']);
 
-                if (isset($allInput['optCategory']) && !empty($allInput['optCategory'])) {
-                    $selectedCategory = $learnedWords->first()->category;
-                    $listWords = $this->wordRepository->getNotLearnedWordWithCategory($selectedCategory->id, $learnedWords->lists('id'));
-                } else {
-                    $selectedCategory = '';
-                    $listWords = $this->wordRepository->getNotLearnedWord($learnedWords->lists('id'));
-                }
-                break;
+                    if (isset($allInput['optCategory']) && !empty($allInput['optCategory'])) {
+                        $selectedCategory = $listWords->first()->category;
+                    }
+
+                    break;
+                case config('settings.learned'):
+                    $listWordWithCategory = $this->wordRepository->getWordsWithCategoryId($allInput['optCategory']);
+                    $listWords = $this->wordRepository->getListLearnedWords($listWordWithCategory, $this->lessonRepository, $this->resultRepository, $this->answerRepository);
+
+                    if (isset($allInput['optCategory']) && !empty($allInput['optCategory'])) {
+                        $selectedCategory = $listWords->first()->category;
+                    }
+
+                    break;
+                case config('settings.not_learned'):
+                    $listWordWithCategory = $this->wordRepository->getWordsWithCategoryId($allInput['optCategory']);
+                    $learnedWords = $this->wordRepository->getListLearnedWords($listWordWithCategory, $this->lessonRepository, $this->resultRepository, $this->answerRepository);
+
+                    if (isset($allInput['optCategory']) && !empty($allInput['optCategory'])) {
+                        $selectedCategory = $learnedWords->first()->category;
+                        $listWords = $this->wordRepository->getNotLearnedWordWithCategory($selectedCategory->id, $learnedWords->lists('id'));
+                    } else {
+                        $listWords = $this->wordRepository->getNotLearnedWord($learnedWords->lists('id'));
+                    }
+
+                    break;
+            }
+        } catch (\Exception $e) {
+            return redirect()->action('User\WordController@index');
         }
 
         return view('user.word_list', compact('categories', 'selectedCategory', 'rdChoose'))->with('words', $listWords);

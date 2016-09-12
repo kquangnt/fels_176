@@ -20,7 +20,7 @@
                     <div class="row">
                         <center>
                             <a type="button" href="{{ url('user/word_list') }}" class="btn btn-success">{{ trans('label.words') }}</a>
-                            <a type="button" class="btn btn-success">{{ trans('label.lesson') }}</a>
+                            <a type="button" href="{{ url('user/lesson') }}" class="btn btn-success">{{ trans('label.lesson') }}</a>
                         </center>
                     </div>
                         <div class="activity">

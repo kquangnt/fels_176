@@ -10,7 +10,7 @@
 
                     {{ Form::model($user, ['method' => 'PATCH', 'route' => ['user.user.update', $user->id], 'class' => 'form-horizontal', 'role' => 'form', 'files' => true]) }}
 
-                        <img id="output" src="{{ asset($user->getAvatarPath()) }}"/>
+                        <img class="edit-profile" id="output" src="{{ asset($user->getAvatarPath()) }}"/>
 
                         <div class="form-group">
                              {{ Form::label('avatar', trans('label.avatar'), ['class' => 'col-md-4 control-label']) }}

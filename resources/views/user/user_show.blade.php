@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('profile')
-    <div>
-         <img class="image-profile" src="{{ Auth::user()->getAvatarPath() }}" class="user-image" alt="User Image">
+    <div class="user-infor">
+         <img class="img-circle image-profile" src="{{ Auth::user()->getAvatarPath() }}" class="user-image" alt="User Image">
          <p><strong> {{ Auth::user()->name }} </strong></p>
          <p> {{ trans('label.learned') }} {{ $sumLearnedWords }} {{ trans('label.words') }} </p>
          <p> {{ trans('label.followed') }} {{ count(Auth::user()->followers) }} </p>

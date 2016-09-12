@@ -51,6 +51,13 @@
                     <li><a href="{{ URL::action('User\WordController@index') }}">{{ trans('label.word_list') }}</a></li>
                     <li><a href="{{ URL::action('User\CategoryController@index') }}">{{ trans('label.category') }}</a></li>
                     <li><a href="{{ URL::action('User\UsersController@index') }}">{{ trans('label.user_show') }}</a></li>
+                    @if (Auth::check() && Auth::user()->isAdmin())
+                        <li><a href="{{ URL::action('Admin\UserController@index') }}">{{ trans('user.user') }}</a></li>
+                        <li><a href="{{ URL::action('Admin\CategoryController@index') }}">{{ trans('category.category') }}</a></li>
+                        <li><a href="{{ URL::action('Admin\WordController@index') }}">{{ trans('word.word') }}</a></li>
+                        <li><a href="{{ URL::action('Admin\AnswerController@index') }}">{{ trans('answer.answer') }}</a></li>
+                        <li><a href="{{ URL::action('Admin\LessonController@index') }}">{{ trans('lesson.lesson') }}</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

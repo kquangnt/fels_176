@@ -20,7 +20,7 @@ class LessonTableSeeder extends Seeder
         $startUser = User::orderby('created_at')->first();
         $endUser = User::orderby('created_at', 'desc')->first();
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             Lesson::create([
                 'category_id' => mt_rand($startCategory->id, $endCategory->id),
                 'user_id' => mt_rand($startUser->id, $endUser->id),

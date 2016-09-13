@@ -14,16 +14,17 @@ class WordTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $startCategory = Category::orderby('created_at')->first();
-        $endCategory = Category::orderby('created_at', 'desc')->first();
+        $categories = Category::all();
 
-        for ($i = 0; $i < 4; $i++) {
-            Word::create([
+        foreach ($categories as $category) {
+            for ($i = 0; $i < 6; $i++) {
+                Word::create([
                 'content' => $faker->word,
-                'category_id' => mt_rand($startCategory->id, $endCategory->id),
+                'category_id' => $category->id,
                 'created_at' => $faker->dateTime($max = 'now'),
                 'updated_at' => $faker->dateTime($max = 'now'),
             ]);
+            }
         }
     }
 }

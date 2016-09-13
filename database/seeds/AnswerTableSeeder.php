@@ -17,7 +17,7 @@ class AnswerTableSeeder extends Seeder
         $words = Word::all();
 
         foreach ($words as $word) {
-            for ($i = 0; $i < 4; $i++) {
+            for ($i = 0; $i < 3; $i++) {
                 if ($i == 0) {
                     Answer::create([
                         'word_id' => $word->id,

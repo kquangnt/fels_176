@@ -59,4 +59,5 @@
          'pdf' => 'PDF',
          'save' => 'Save',
          'alert_message' => 'You can not delete current account',
+         'confirm_unfollow' => 'Are you sure unfollow this account?',
 ];

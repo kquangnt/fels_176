@@ -26,11 +26,7 @@ class WordController extends Controller {
 
     public function index()
     {
-        $categories = $this->categoryRepository->getListCategory();
-        $words = $this->wordRepository->all();
-        $rdChoose = config('settings.all');
-
-        return view('user.word_list', compact('categories', 'words', 'rdChoose'));
+        return redirect()->action('User\FilterController@filterWord');
     }
 
     /**

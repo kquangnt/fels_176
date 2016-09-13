@@ -43,8 +43,8 @@ class FilterController extends Controller
     {
         $allInput = $request->only(['optCategory', 'rdLearned']);
         $categories = $this->categoryRepository->lists('name', 'id');
-        $rdChoose = $allInput['rdLearned'];
         $selectedCategory = '';
+        $rdChoose = isset($allInput['rdLearned']) ? $allInput['rdLearned'] : config('settings.all');
 
         try {
             switch ($rdChoose) {
@@ -79,7 +79,7 @@ class FilterController extends Controller
                     break;
             }
         } catch (\Exception $e) {
-            return redirect()->action('User\WordController@index');
+            return redirect()->action('User\FilterController@filterWord');
         }
 
         return view('user.word_list', compact('categories', 'selectedCategory', 'rdChoose'))->with('words', $listWords);

@@ -58,4 +58,5 @@
          'filter' => 'Filter',
          'pdf' => 'PDF',
          'save' => 'Save',
+         'alert_message' => 'You can not delete current account',
 ];

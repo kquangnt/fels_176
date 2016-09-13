@@ -41,7 +41,7 @@ class LessonController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->lists('name');
+        $categories = $this->categoryRepository->lists('name', 'id');
         $users = $this->userRepository->lists('name', 'id');
 
         return view('admin.lesson.create', compact('categories', 'users'));
@@ -89,7 +89,7 @@ class LessonController extends Controller
     public function edit($id)
     {
         $lesson = $this->lessonRepository->find($id);
-        $categories = $this->categoryRepository->lists('name');
+        $categories = $this->categoryRepository->lists('name', 'id');
         $users = $this->userRepository->lists('name', 'id');
 
         if (!$lesson) {

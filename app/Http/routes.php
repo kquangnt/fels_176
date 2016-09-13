@@ -55,6 +55,7 @@ Route::get('/redirect/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback');
 
 Route::post('/filter-word', 'User\FilterController@filterWord');
+Route::get('/filter-word', 'User\FilterController@filterWord');
 
 Route::auth();
 

@@ -17,8 +17,10 @@
 </div>
 
 <div class="form-group col-sm-6">
-    {!! Form::label('is_correct', trans('answer.correct')) !!}
-    {!! Form::text('is_correct', false, ['class' => 'form-control']) !!}
+    {!! Form::radio('is_correct', config('settings.not_correct'), true) !!}
+    {!! trans('answer.not_correct') !!}
+    {!! Form::radio('is_correct', config('settings.is_correct')) !!}
+    {!! trans('answer.correct') !!}
 </div>
 
 <div class="form-group col-sm-12">

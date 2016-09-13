@@ -35,7 +35,7 @@ class WordController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->getListCategory();
+        $categories = $this->categoryRepository->lists('name', 'id');
 
         return view('admin.word.create', compact('categories'));
     }
@@ -82,7 +82,7 @@ class WordController extends Controller
     public function edit($id)
     {
         $word = $this->wordRepository->find($id);
-        $categories = $this->categoryRepository->getListCategory();
+        $categories = $this->categoryRepository->lists('name', 'id');
 
         if (!$word) {
             return redirect()->route('admin.word.index')->with('errors', trans('word.word_not_found'));

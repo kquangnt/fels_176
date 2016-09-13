@@ -10,4 +10,6 @@ return [
     'all' => 'all',
     'learned' => 'learned',
     'not_learned' => 'not learned',
+    'not_completed' => '0',
+    'is_completed' => '1',
 ];

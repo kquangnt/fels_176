@@ -32,6 +32,7 @@
 
                         <div class="panel-body">
                             <table>
+                            @if (!empty($words))
                                 @foreach ($words as $word)
                                     <tr>
                                         <td>
@@ -46,6 +47,9 @@
                                         @endforeach
                                     </tr>
                                 @endforeach
+                            @else
+                                <label> {{ trans('label.not_found') }} </label>
+                            @endif
                             </table>
                         </div>
                         {!! Form::close() !!}

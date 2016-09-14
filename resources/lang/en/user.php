@@ -19,6 +19,8 @@ return [
     'avatar' => 'Avatar',
     'action' => 'Action',
     'role' => 'Role',
+    'edit_user' => 'Edit User',
+    'detail_user' => 'Detail User',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'update_profile' => 'Update Profile',

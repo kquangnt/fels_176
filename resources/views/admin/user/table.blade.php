@@ -19,12 +19,11 @@
                 {!! Form::open(['route' => ['admin.user.destroy', $user->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('admin.user.show', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    @if (auth()->user()->id !== $user->id)
+                    @if (auth()->user()->id == $user->id || !$user->isAdmin())
                         <a href="{!! route('admin.user.edit', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    @endif
+                    @if (auth()->user()->id !== $user->id && !$user->isAdmin())
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm("' . trans('label.confirm_delete') . '")']) !!}
-                    @else
-                        <a class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => 'return confirm("' . trans('label.alert_message') . '")']) !!}
                     @endif
                 </div>
                 {!! Form::close() !!}

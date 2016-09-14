@@ -79,7 +79,12 @@ class FilterController extends Controller
                     break;
             }
         } catch (\Exception $e) {
-            return redirect()->action('User\FilterController@filterWord');
+            $selectedCategory = $this->categoryRepository->find($allInput['optCategory']);
+            $listWords = null;
+
+            if ($rdChoose == config('settings.not_learned')) {
+                $listWords = $this->wordRepository->getWordsWithCategoryId($selectedCategory->id);
+            }
         }
 
         return view('user.word_list', compact('categories', 'selectedCategory', 'rdChoose'))->with('words', $listWords);

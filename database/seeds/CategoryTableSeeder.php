@@ -18,8 +18,6 @@ class CategoryTableSeeder extends Seeder
             Category::create([
                 'name' => $faker->word,
                 'description' => $faker->catchPhrase,
-                'created_at' => $faker->dateTime($max = 'now'),
-                'updated_at' => $faker->dateTime($max = 'now'),
             ]);
         }
     }

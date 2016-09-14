@@ -19,8 +19,6 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin',
             'password' => bcrypt('password'),
             'role' => 1,
-            'created_at' => $faker->dateTime($max = 'now'),
-            'updated_at' => $faker->dateTime($max = 'now'),
         ]);
 
         for ($i = 0; $i < 4; $i++) {
@@ -29,8 +27,6 @@ class UsersTableSeeder extends Seeder
                 'name' => $faker->name,
                 'password' => bcrypt($faker->name . $faker->year),
                 'role' => 0,
-                'created_at' => $faker->dateTime($max = 'now'),
-                'updated_at' => $faker->dateTime($max = 'now'),
             ]);
         }
     }

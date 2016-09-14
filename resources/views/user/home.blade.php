@@ -36,7 +36,7 @@
                                 @if (!$lesson->user->isCurrent())
                                     {!! Form::open(['route' => ['user.relationship.destroy', Auth::user()->id, 'follower_id' => $lesson->user->id], 'method' => 'DELETE']) !!}
 
-                                    {!! Form::submit(trans('label.unfollow'), ['class' => 'btn btn-info', 'onclick' => "return confirm(trans('label.confirm_delete'))"]) !!}
+                                    {!! Form::submit(trans('label.unfollow'), ['class' => 'btn btn-info', 'onclick' => 'return confirm("' . trans('label.confirm_unfollow') . '")']) !!}
 
                                     {!! Form::close() !!}
                                 @endif
